@@ -1,0 +1,109 @@
+---
+title: slides
+format: pdf
+# execute:
+#   fig-width: 6
+#   fig-asp: 0.618
+#   out-width: 70%
+#   fig-align: center
+
+
+params:
+  my_class: pickup
+---
+
+## Slide 1
+
+this is a test slide.
+
+## Slide 2
+
+![](candoso.png){width="5%"}
+
+```{r}
+#| fig-width: 7
+#| out-width: 70%
+#| fig-asp: 0.618
+#| fig-align: center
+library(tidyverse)
+diamonds |> 
+  ggplot(aes(x = carat)) +
+  geom_density()
+```
+```{r}
+#| fig-width: 10
+#| fig-height: 3
+#| out-width: 70%
+library(tidyverse)
+diamonds |> 
+  ggplot(aes(x = carat)) +
+  geom_density()
+```
+```{r}
+#| fig-width: 8
+library(tidyverse)
+diamonds |> 
+  ggplot(aes(x = carat)) +
+  geom_density()
+```
+
+```{r}
+diamonds |> 
+  ggplot(aes(x = carat)) +
+  geom_freqpoly()
+```
+
+```{r}
+knitr::kable(mtcars[1:5, ], )
+```
+
+```{r}
+#| label: tbl-mtcars
+#| tbl-cap: mtcars table
+gt::gt(mtcars[1:5, ], )
+```
+You can see the table @tbl-mtcars.
+
+```{r}
+#| label: a
+#| cache: true
+
+lubridate::now()
+```
+```{r}
+#| label: b
+#| cache: true
+#| dependson: a
+
+lubridate::now()
+```
+```{r}
+#| label: c
+#| cache: true
+#| dependson: a
+
+lubridate::now()
+```
+```{r}
+#| label: d
+#| cache: true
+#| dependson: b,c
+
+lubridate::now()
+```
+
+
+```{r}
+class <- mpg |> filter(class == params$my_class)
+```
+
+
+Fuel economy for `r params$my_class`s is shown below.
+
+```{r}
+#| message: false
+
+ggplot(class, aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+```

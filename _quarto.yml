@@ -1,0 +1,9 @@
+project: 
+  type: website
+  title: Quarto
+  preview:
+    port: 7315
+    browser: false
+
+website:
+  title: Can.Do.So

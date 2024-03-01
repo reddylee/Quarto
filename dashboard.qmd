@@ -1,0 +1,44 @@
+---
+title: My Dashboard
+format: 
+  dashboard: 
+    oritentation: columns
+    nav-buttons:
+      - twitter
+      - github
+---
+
+## title 1
+
+```{r}
+plot(cars)
+```
+
+```{r}
+plot(pressure)
+```
+
+## title 2
+```{r}
+plot(mtcars)
+```
+
+## Title 3
+```{r}
+#| component: valuebox
+list(
+  title = "My Value",
+  value = 27,
+  color = "purple",
+  icon = "envelope"
+)
+```
+```{r}
+#| component: valuebox
+list(
+  title = "My Value",
+  value = 27,
+  color = "skyblue",
+  icon = "envelope"
+)
+```
