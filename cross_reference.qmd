@@ -1,0 +1,64 @@
+---
+title: "Cross Reference"
+format: html
+number-sections: true
+execute:
+  warning: false
+---
+
+```{r}
+library(tidyverse)
+library(gt)
+```
+
+## Images {#sec-img}
+
+
+![Caption](candoso.png){width=61.8% #fig-log}
+
+Reference: @fig-log. We can reformat how this appears. For instance [-@fig-log] or [Figgy @fig-log]. 
+
+## Plots
+
+```{r}
+#| label: fig-msleep
+
+qplot(sleep_total, awake, data = msleep, color = vore) +
+  theme_minimal()
+
+```
+
+Reference: @fig-msleep. We can reformat how this appears. For instance [-@fig-msleep] or [Figgy @fig-msleep].
+
+## Tables
+```{r}
+#| label: tbl-msleep
+#| tbl-cap: Sleep data
+
+msleep |> 
+  summarise(Count = n(),
+            avg_sleep = mean(sleep_total, na.rm = TRUE),
+            .by = vore) |>
+  arrange(desc(avg_sleep)) |>
+  gt()
+```
+
+Reference: @tbl-msleep. We can reformat how this appears. For instance [-@tbl-msleep] or [Tabby @tbl-msleep].
+
+## Callouts
+
+:::{.callout-note #nte-mynote}
+Check out this note!
+:::
+
+Reference: @nte-mynote. We can reformat how this appears. For instance [-@nte-mynote] or [Note @nte-mynote].
+
+## Equations
+
+$$ e = mc^2 $$ {#eq-rel}
+
+Reference: @eq-rel. We can reformat how this appears. For instance [-@eq-rel] or [Eq. @eq-rel].
+
+## Sections
+
+Please refer to @sec-img. 
