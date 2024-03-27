@@ -1,6 +1,6 @@
 ---
 title: "Cross Reference"
-format: html
+format: pdf
 number-sections: true
 execute:
   warning: false
@@ -62,3 +62,20 @@ Reference: @eq-rel. We can reformat how this appears. For instance [-@eq-rel] or
 ## Sections
 
 Please refer to @sec-img. 
+
+:::{#fig-example}
+![](candoso.png)
+This is a figure.
+:::
+
+@fig-example shows the logo of my website.
+
+:::{#fig-library}
+
+```{r}
+library(tidyverse)
+```
+This is a code block.
+:::
+
+@fig-library shows the code block.

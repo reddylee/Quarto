@@ -74,7 +74,7 @@
     "href": "cross_reference.html#tables",
     "title": "Cross Reference",
     "section": "3 Tables",
-    "text": "3 Tables\n\nmsleep |&gt; \n  summarise(Count = n(),\n            avg_sleep = mean(sleep_total, na.rm = TRUE),\n            .by = vore) |&gt;\n  arrange(desc(avg_sleep)) |&gt;\n  gt()\n\n\n\nTable 1: Sleep data\n\n\n\n\n\n\n\n\n\nvore\nCount\navg_sleep\n\n\n\n\ninsecti\n5\n14.940000\n\n\nomni\n20\n10.925000\n\n\ncarni\n19\n10.378947\n\n\nNA\n7\n10.185714\n\n\nherbi\n32\n9.509375\n\n\n\n\n\n\n\n\n\n\nReference: Table 1. We can reformat how this appears. For instance 1 or Tabby 1."
+    "text": "3 Tables\n\nmsleep |&gt; \n  summarise(Count = n(),\n            avg_sleep = mean(sleep_total, na.rm = TRUE),\n            .by = vore) |&gt;\n  arrange(desc(avg_sleep)) |&gt;\n  gt()\n\n\n\nTable 1: Sleep data\n\n\n\n\n\n\n\n\n\n\nvore\nCount\navg_sleep\n\n\n\n\ninsecti\n5\n14.940000\n\n\nomni\n20\n10.925000\n\n\ncarni\n19\n10.378947\n\n\nNA\n7\n10.185714\n\n\nherbi\n32\n9.509375\n\n\n\n\n\n\n\n\n\n\n\nReference: Table 1. We can reformat how this appears. For instance 1 or Tabby 1."
   },
   {
     "objectID": "cross_reference.html#callouts",
@@ -102,6 +102,6 @@
     "href": "cross_reference.html#sections",
     "title": "Cross Reference",
     "section": "6 Sections",
-    "text": "6 Sections\nPlease refer to Section 1."
+    "text": "6 Sections\nPlease refer to Section 1.\n\n\n\n\n\n\nFigure 3\n\n\n\nFigure 3 shows the logo of my website."
   }
 ]
