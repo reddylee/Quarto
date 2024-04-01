@@ -1,8 +1,24 @@
 # Your R code goes here
-```{r}
-mtcars
-```
 
-```{r}
+$$
+\begin{equation}
+y = x^2
+\end{equation}
+$$
 
-```
+numbered equation
+
+$$
+\begin{align*}
+y = x^2
+\end{align*}
+$$ {#eq-sq}
+
+::: columns
+::: {.column width="40%"}
+:::
+
+::: {.column width="60%"}
+contents...
+:::
+:::
