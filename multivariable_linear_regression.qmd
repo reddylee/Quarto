@@ -1,0 +1,71 @@
+```{r}
+library(tidyverse)
+library(ISLR)
+library(performance)
+library(ggeffects)
+library(sjPlot)
+library(gtsummary)
+library(equatiomatic)
+```
+
+```{r}
+set.seed(9)
+```
+
+```{r}
+d <- Wage |> 
+  filter(wage < 200 & age < 60) |> 
+  sample_n(100, .by = education)
+```
+
+```{r}
+m <- lm(wage ~ age + year + jobclass + education, data = d)
+summary(m)
+```
+## Check model assumptions visually
+
+```{r}
+check_model(m)
+check_normality(m)
+check_heteroscedasticity(m)
+```
+```{r}
+set.seed(9)
+d2 <- Wage |> 
+  filter(wage < 200 & age < 60) |> 
+  group_by(education) |>
+  sample_n(100) |> 
+  ungroup()
+```
+
+```{r}
+m2 <- lm(wage ~ age + year + jobclass + education, data = d2)
+summary(m2)
+```
+
+```{r}
+check_model(m2)
+check_normality(m2)
+check_heteroscedasticity(m2)
+```
+
+## Visualize predictions
+
+```{r}
+ggeffect(m2)
+```
+```{r}
+ggpredict(m2, terms = "age")
+```
+```{r}
+ggeffect(m2) |> 
+  plot() |> 
+  sjPlot::plot_grid()
+```
+
+
+```{r}
+#| results: asis
+extract_eq(m2, wrap = T, terms_per_line = 4)
+```
+
