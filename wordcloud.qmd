@@ -1,0 +1,25 @@
+```{r}
+library(wordcloud2)
+library(tidyverse)
+library(jiebaR)
+library(tidytext)
+```
+
+
+```{r}
+text <- read.csv("../mooc/report.txt", header = FALSE, sep = "\n")
+stopwords <- read.csv("../data/stopwords-zh.txt", header = FALSE, sep = "\n") |> 
+  rename(word = V1)
+text |> 
+  pull(V1) |>
+  segment(worker()) |>
+  data_frame(word = _) |>
+  unnest_tokens(input = word, output = word) |>
+  anti_join(stopwords, join_by(word)) |>
+  count(word, sort = TRUE) |> 
+  wordcloud2()
+demoFreq |> 
+  wordcloud2()
+```
+
+

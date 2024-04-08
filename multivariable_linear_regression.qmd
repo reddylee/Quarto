@@ -6,6 +6,7 @@ library(ggeffects)
 library(sjPlot)
 library(gtsummary)
 library(equatiomatic)
+library(report)
 ```
 
 ```{r}
@@ -20,8 +21,16 @@ d <- Wage |>
 
 ```{r}
 m <- lm(wage ~ age + year + jobclass + education, data = d)
-summary(m)
+m |> 
+  report() |> 
+  summary()
 ```
+```{r}
+m |> 
+  report_table()
+```
+
+
 ## Check model assumptions visually
 
 ```{r}

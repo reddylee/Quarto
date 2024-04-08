@@ -1,0 +1,35 @@
+---
+format: pdf
+---
+
+```{r}
+library(tidyverse)
+library(glue)
+```
+
+```{r}
+glue("First paragraph of text.
+     Second paragraph of text.
+     Third paragraph of text.")
+
+glue("This is a very long sentence which
+     exceed a line of a paper of normal A4 long.")
+```
+
+```{r}
+name <- "Reddy"
+age <- 51
+
+result <- glue("My name is {name} and I am {age} years old.")
+print(result)
+```
+`r glue("My name is {name} and I am {age} years old.")`
+
+`r glue("The sum of 2 and 3 is {2 + 3}.")`
+
+```{r}
+data <- data.frame(name = c("Alice", "Bob"), age = c(30, 25))
+result <- glue("Name: {data$name}, Age: {data$age}")
+print(result)
+```
+

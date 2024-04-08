@@ -1,0 +1,92 @@
+```{r}
+library(tidyverse)
+library(marginaleffects)
+```
+```{r}
+affairs <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/AER/Affairs.csv")
+tail(affairs)
+```
+
+## Delta method
+```{r}
+mod <- glm(
+  affairs ~ children + gender + yearsmarried,
+  family = poisson,
+  data = affairs)
+summary(mod)
+```
+```{r}
+coef(mod)
+```
+### Tests of equality
+
+```{r}
+hypotheses(mod, hypothesis = "childrenyes = gendermale")
+hypotheses(mod, hypothesis = "b2 = b3")
+hypotheses(mod, hypothesis = c(0, 1, -1, 0))
+```
+
+```{r}
+hypotheses(mod, hypothesis = "b2 * exp(b3) = 0.02")
+```
+
+## Adjusted Predictions
+```{r}
+predict(mod, type = "response")
+predictions(mod)
+```
+
+```{r}
+predictions(
+    mod,
+    newdata = datagrid(yearsmarried = c(1, 25)))
+```
+```{r}
+predictions(
+    mod,
+    newdata = datagrid(yearsmarried = range))
+```
+```{r}
+predictions(
+    mod,
+    hypothesis = "b1 = b2",
+    newdata = datagrid(yearsmarried = range))
+```
+
+## Plot
+```{r}
+plot_cap(mod, condition = c("yearsmarried", "children"))
+predictions(mod) |> summary()
+predictions(mod, by = "children") |> summary()
+predictions(mod, type = "response") |> head(2)
+predictions(mod, type = "link") |> head(2)
+```
+## Contrasts
+```{r}
+comparisons(mod) |> 
+  summary()
+```
+```{r}
+comparisons(mod, variables = list(yearsmarried = c(1, 25))) |> 
+  summary()
+```
+```{r}
+comparisons(mod, variables = list(yearsmarried = "sd")) |> 
+  summary()
+```
+## Marginal Effects
+```{r}
+mod2 <- lm(mpg ~ hp * wt, data = mtcars)
+slopes(mod2) |> 
+  summary(mfx)
+```
+
+```{r}
+slopes(mod2, slope = "eyex") |> 
+  summary()
+```
+```{r}
+plot_cme(mod2, effect = "hp", condition = "wt")
+```
+
+## 

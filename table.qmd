@@ -1,0 +1,115 @@
+---
+format: pdf
+---
+
+```{r}
+library(tidyverse)
+library(gtsummary)
+library(gt)
+```
+
+```{r}
+sm_trial <- trial %>% 
+  select(trt, age, grade, response)
+```
+
+```{r}
+trial |> 
+  select(-trt) |> 
+  tbl_summary()
+```
+```{r}
+tbl_summary_2 <-  sm_trial |> 
+  tbl_summary(
+    by = trt,
+    type = age ~ "continuous2",
+    statistic = 
+      list(age ~ c("{mean} ({sd})", "{min}, {max}"), 
+           response ~ "{n} / {N} ({p}%)"),
+    label = grade ~ "Pathologic tumor grade",
+    digits = age ~ 1
+  )
+
+tbl_summary_2 |> 
+  as_hux_table()
+```
+```{r}
+ferrari <- gtcars |> 
+  select(
+    manufacturer = mfr,
+    model,
+    year, 
+    horspower = hp
+  ) |> 
+  filter(manufacturer == "Ferrari") |> 
+  arrange(horspower)
+
+gt(ferrari)
+```
+
+```{r}
+ferrari1 <- ferrari |> 
+  janitor::clean_names("title") |>
+  gt() |> 
+  tab_header(
+    title = "Ferrari & Horspower",
+    subtitle = "The most powerful cars"
+  ) 
+ferrari1 
+```
+
+```{r}
+ferrari1 |>
+  tab_options(
+    #table.width = pct(90),
+    data_row.padding = px(5),
+    heading.align = "left",
+    row.striping.background_color = "lightgray",
+    column_labels.background.color = "skyblue",
+    heading.title.font.size = px(20)
+  ) |>
+  tab_style(
+    style = cell_text(
+      color = "purple",
+      weight = "bold",
+      font = google_font("Roboto Condensed")
+    ),
+    locations = cells_body()
+  ) |> 
+  opt_row_striping() 
+```
+
+```{r}
+ferrari |> 
+  tbl_summary() 
+```
+```{r}
+ferrari |> 
+  tbl_summary() |> 
+  as_hux_table()
+```
+```{r}
+ferrari |> 
+  tbl_summary() |> 
+  as_flex_table()
+```
+```{r}
+ferrari |> 
+  tbl_summary() |> 
+  as_kable()
+```
+```{r}
+ferrari |> 
+  tbl_summary() |> 
+  as_gt()
+```
+```{r}
+ferrari |> 
+  tbl_summary() |> 
+  as_kable_extra()
+```
+
+
+
+
+
