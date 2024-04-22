@@ -31,5 +31,8 @@ print(result)
 data <- data.frame(name = c("Alice", "Bob"), age = c(30, 25))
 result <- glue("Name: {data$name}, Age: {data$age}")
 print(result)
+usethis::edit_r_environ()
 ```
+
+
 
